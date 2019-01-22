@@ -9,10 +9,22 @@
       margin: 0;
       padding: 0;
       color: rgb(250, 250, 250);
-      font-size: 7em;
+      font-size: 6em;
       font-family: "メイリオ";
+      text-shadow: #333 1px 1px 0px, #333 -1px 1px 0px, #333 1px -1px 0px, #333 -1px -1px 0px;
     }
   </style>
-  00:00
+  <div id="clo"></div>
+  <script type="text/javascript">
+    const clock = () => {
+      const now = new Date();
+      let h = now.getHours();
+      let m = now.getMinutes();
+      if(h<10) { h = "0" + h; }
+      if(m<10) { m = "0" + m; }
+      document.getElementById("clo").innerHTML = h + ":" + m;
+    };
+    setInterval(clock, 10000);
+  </script>
 </body>
 </html>

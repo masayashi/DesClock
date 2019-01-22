@@ -1,19 +1,27 @@
-// アプリケーション作成用のモジュールを読み込み
 const {app, BrowserWindow} = require('electron');
  
-// メインウィンドウ
 let mainWindow;
  
 function createWindow() {
-  // メインウィンドウを作成します
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({
+    x: 80,
+    y: 0,
+    width: 400,
+    height: 200,
+    transparent: true,
+    frame: false,
+    resizable: false,
+    hasShadow: false,
+    alwaysOnTop: true,
+  });
+
+  // マウスイベントを無視
+  mainWindow.setIgnoreMouseEvents(true);
  
-  // メインウィンドウに表示するURLを指定します
-  // （今回はmain.jsと同じディレクトリのindex.html）
   mainWindow.loadFile('index.html');
  
   // デベロッパーツールの起動
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
  
   // メインウィンドウが閉じられたときの処理
   mainWindow.on('closed', () => {
@@ -31,6 +39,7 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
+
 // アプリケーションがアクティブになった時の処理(Macだと、Dockがクリックされた時）
 app.on('activate', () => {
   // メインウィンドウが消えている場合は再度メインウィンドウを作成する

@@ -1,11 +1,12 @@
 const {app, BrowserWindow} = require('electron');
  
 let mainWindow;
- 
+const json = require('./settings.json');
+
 function createWindow() {
   mainWindow = new BrowserWindow({
-    x: 80,
-    y: 10,
+    x: json.x,
+    y: json.y,
     width: 400,
     height: 200,
     transparent: true,
@@ -13,6 +14,7 @@ function createWindow() {
     resizable: false,
     hasShadow: false,
     alwaysOnTop: true,
+    show: true,
   });
 
   // マウスイベントを無視

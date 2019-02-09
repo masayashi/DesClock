@@ -1,6 +1,7 @@
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, Menu, Tray} = require('electron');
  
 let mainWindow;
+let icon;
 const json = require('./settings.json');
 
 function createWindow() {
@@ -15,6 +16,7 @@ function createWindow() {
     hasShadow: false,
     alwaysOnTop: true,
     show: true,
+    skipTaskbar: true,
   });
 
   // マウスイベントを無視
@@ -29,6 +31,13 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+
+  // タスクトレイ用アイコンとコンテキストメニュー
+  icon = new Tray('resources/icon.png')
+  const contextMenu = Menu.buildFromTemplate([
+    {label:'hoge', type: 'radio'}
+  ])
+  icon.setContextMenu(contextMenu)
 }
  
 //  初期化が完了した時の処理
